@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00d4ff;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00a0cc;
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Mono', monospace;
+  background-color: #0a0a1a;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Custom component classes */
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-cyan-electric text-space-black font-semibold rounded 
+           hover:bg-opacity-80 transition-all duration-300 
+           shadow-[0_0_10px_rgba(0,212,255,0.5)];
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 border border-cyan-electric text-cyan-electric 
+           font-semibold rounded hover:bg-cyan-electric 
+           hover:text-space-black transition-all duration-300;
+  }
+
+  .card {
+    @apply bg-space-dark border border-space-light rounded-lg p-4 
+           shadow-lg backdrop-blur-sm bg-opacity-80;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 bg-space-light border border-space-light 
+           rounded text-white placeholder-gray-400 
+           focus:outline-none focus:border-cyan-electric 
+           focus:shadow-[0_0_10px_rgba(0,212,255,0.3)];
+  }
+
+  .panel-glass {
+    @apply bg-space-dark/90 backdrop-blur-md border border-space-light/50;
+  }
+
+  .orbit-legend {
+    @apply flex items-center gap-2 text-sm;
+  }
+
+  .satellite-item {
+    @apply p-2 hover:bg-space-light cursor-pointer transition-colors 
+           border-b border-space-light last:border-b-0;
+  }
+
+  .satellite-item:hover {
+    @apply bg-space-light/50;
+  }
+
+  .data-value {
+    @apply font-roboto-mono text-cyan-electric;
+  }
+
+  .data-label {
+    @apply text-xs text-gray-400 uppercase tracking-wider;
+  }
+}
+
+/* Three.js canvas container */
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Animations */
+@keyframes satellite-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+.satellite-marker {
+  animation: satellite-pulse 2s ease-in-out infinite;
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+}
+
+.glow-orange {
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+}
+
+.glow-magenta {
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+}
+
+/* Orbit type colors */
+.orbit-leo {
+  color: #00ff88;
+}
+
+.orbit-meo {
+  color: #00d4ff;
+}
+
+.orbit-geo {
+  color: #ff6b35;
+}
+
+.orbit-polar {
+  color: #ff00ff;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #1a1a2e;
+  border-top: 3px solid #00d4ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Dashboard styles */
+.dashboard-panel {
+  @apply fixed bottom-0 left-0 right-0 h-48 panel-glass 
+         border-t border-cyan-electric/30 flex;
+}
+
+.dashboard-metric {
+  @apply flex flex-col items-center justify-center px-6 
+         border-r border-space-light;
+}
+
+.dashboard-metric:last-child {
+  @apply border-r-0;
+}
+
+/* Sidebar styles */
+.sidebar {
+  @apply fixed left-0 top-16 bottom-48 w-72 panel-glass 
+         overflow-y-auto z-10;
+}
+
+/* Header */
+.header {
+  @apply fixed top-0 left-0 right-0 h-16 bg-space-dark/95 
+         backdrop-blur-md border-b border-space-light z-20 
+         flex items-center justify-between px-6;
+}
+
+/* Tooltip */
+.tooltip {
+  @apply absolute bg-space-dark border border-cyan-electric 
+         px-3 py-2 rounded text-sm shadow-lg z-50;
+}
+
